@@ -6,13 +6,20 @@ seasons = [2024, 2025]
 for season in seasons:
     standings_df = pd.read_csv(f'laliga2_standings_{season}.csv')
 
-    standings_df[['W', 'D', 'L']] = standings_df['W-D-L'].str.split('-', expand=True).astype(int)
-    standings_df.drop(columns=['W-D-L'], inplace=True)
+    standings_df[['total_W', 'total_D', 'total_L']] = standings_df['W-D-L'].str.split('-', expand=True).astype(int)
+    standings_df[['wins_home', 'draws_home', 'losses_home']] = standings_df['HOME'].str.split('-', expand=True).astype(int)
+    standings_df[['wins_away', 'draws_away', 'losses_away']] = standings_df['AWAY'].str.split('-', expand=True).astype(int)
+
+    standings_df.drop(columns=['W-D-L', 'HOME', 'AWAY'], inplace=True)
 
     standings_df.rename(columns={
-        'CLUBS': 'team', 'POSITION': 'position', 'MP': 'matches_played',
-        'PTS': 'points', 'GF': 'goals_for', 'GA': 'goals_against',
-        'GD': 'goals_difference', 'HOME': 'home_record', 'AWAY': 'away_record'
+        'CLUBS': 'team', 
+        'POSITION': 'position', 
+        'MP': 'matches_played',
+        'PTS': 'points', 
+        'GF': 'goals_for', 
+        'GA': 'goals_against',
+        'GD': 'goals_difference'
     }, inplace=True)
 
     standings_df.to_csv(f'laliga2_standings_{season}_cleaned.csv', index=False)
