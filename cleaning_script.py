@@ -30,11 +30,11 @@ for season in seasons:
 
     gk.rename(columns={
         'TEAMS': 'team', 'POSITION': 'position', 'GP': 'matches_played',
-        'GA': 'goals_against', 'S': 'shots', 'GD': 'goals_difference',
-        'SOG': 'shots_on_goal', 'SV': 'saves', 'CS': 'clean_sheets'
+        'GA': 'goals_against', 'S': 'shots_faced', 'GD': 'goals_difference',
+        'SOG': 'shots_on_goal_faced', 'SV': 'saves', 'CS': 'clean_sheets'
     }, inplace=True)
 
-    gk.drop(columns=['CLR'], errors='ignore', inplace=True) #dont need this column, all of it are 0s
+    gk.drop(columns=['CLR', 'matches_played', 'goals_against'], errors='ignore', inplace=True) #dont need this column, all of it are 0s
     gk.to_csv(f'laliga2_team_stats_goalkeeping_{season}_cleaned.csv', index=False)
 
     # offensive section
@@ -46,6 +46,7 @@ for season in seasons:
         'POSS': 'possession_time_min_avg', 'CK': 'corner_kicks', 'OFF': 'offsides'
     }, inplace=True)
 
+    off.drop(columns=['matches_played'], errors='ignore', inplace=True)
     off.to_csv(f'laliga2_team_stats_offensive_{season}_cleaned.csv', index=False)
 
     # standard section
@@ -57,6 +58,6 @@ for season in seasons:
         '1GC': 'goals_against_first_half', '2GC': 'goals_against_second_half',
         'A': 'assists', 'YC': 'yellow_cards', 'RC': 'red_cards'
     }, inplace=True)
-
-    standard.drop(columns=['YRC'], errors='ignore', inplace=True) #dont need this column 
+ 
+    standard.drop(columns=['YRC', 'matches_played', 'goals_for', 'goals_against'], errors='ignore', inplace=True)
     standard.to_csv(f'laliga2_team_stats_standard_{season}_cleaned.csv', index=False)
