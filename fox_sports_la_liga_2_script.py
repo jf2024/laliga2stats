@@ -56,7 +56,6 @@ for season in seasons:
         # headers
         headers_tag = driver.find_element(By.XPATH, "//thead[@class='data-header fs-11 ls-pt25 sticky-row-wrapper']")
         list_headers = [head.text.strip() for head in headers_tag.find_elements(By.TAG_NAME, "th") if head.text.strip()]
-        list_headers.insert(0, "POSITION")
         
         # team rows
         team_rows = driver.find_elements(By.XPATH, '//tr[starts-with(@id, "tbl-row-")]')
@@ -66,6 +65,7 @@ for season in seasons:
         for row in team_rows:
             row_cells = [cell.strip() for cell in row.text.split('\n') if cell.strip()]
             if row_cells:
+                row_cells = row_cells[1:] 
                 cat_data.append(row_cells)
                     
         # create dataframe
