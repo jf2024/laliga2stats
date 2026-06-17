@@ -3,7 +3,8 @@
 ## Project Overview
 This project is an end-to-end data engineering and analytics pipeline focused on the Spanish Second Division (La Liga 2) for the 2024 and 2025 seasons. It transforms raw, unstructured web data into a fully normalized relational database, culminating in an interactive Streamlit dashboard designed to explore league-wide trends and individual team performance.
 
-[Insert Screenshot of Main Dashboard Here]
+<img width="1917" height="881" alt="streamlitpic" src="https://github.com/user-attachments/assets/a1f6dfc3-039f-41f6-9074-af0ac2ace27e" />
+
 
 ## Features
 The dashboard is built with a "Macro-to-Micro" analytical approach, featuring four distinct modules:
@@ -12,7 +13,8 @@ The dashboard is built with a "Macro-to-Micro" analytical approach, featuring fo
 * **Team Comparison:** A head-to-head evaluation tool comparing multiple clubs across core metrics simultaneously.
 * **Raw Data Explorer:** A unified, filterable view of the fully joined dataset.
 
-[Insert Screenshot of Team Comparison Tab Here]
+<img width="1911" height="881" alt="headtohead" src="https://github.com/user-attachments/assets/9f2705a5-f284-4f66-9b59-e85cf6df544b" />
+
 
 ## Technical Architecture
 This project implements a standard Extract, Transform, Load (ETL) pipeline:
